@@ -25,19 +25,19 @@ import org.junit.runner.RunWith
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 @SmallTest
-class SephoraDaoTest {
+class ProductDaoTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var database: SephoraItemDataBase
-    private lateinit var dao: SephoraDao
+    private lateinit var database: ProductItemDataBase
+    private lateinit var dao: ProductDao
 
     @Before
     fun setup() {
         database = Room.inMemoryDatabaseBuilder(
             ApplicationProvider.getApplicationContext(),
-            SephoraItemDataBase::class.java
+            ProductItemDataBase::class.java
         ).allowMainThreadQueries().build()
         dao = database.sephoraDao()
     }
@@ -49,10 +49,10 @@ class SephoraDaoTest {
 
     @Test
     fun insertShoppingItem() = runBlockingTest {
-        val sephoraItem = SephoraItem(1,"description","location","urlimage")
+        val sephoraItem = ProductItem(1,"description","location","urlimage")
         dao.insertSephoraItem(sephoraItem)
 
-        val allShoppingItems = dao.observeAllSephoraItems().getOrAwaitValue()
+        val allShoppingItems = dao.getAllSephoraItems().getOrAwaitValue()
 
         assertThat(allShoppingItems).contains(sephoraItem)
     }

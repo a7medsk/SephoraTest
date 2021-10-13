@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
  *Created by haskhiri on 13/10/2021
  */
 @Entity(tableName = "sephora_items")
-data class SephoraItem(
+data class ProductItem(
 
  @PrimaryKey val id: Int,
  val description :String,

@@ -11,12 +11,15 @@ import androidx.room.Query
  *Created by haskhiri on 13/10/2021
  */
 @Dao
-interface SephoraDao {
+interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSephoraItem(sephoraItem: SephoraItem)
+    suspend fun insertSephoraItem(productItem: ProductItem)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllSephoraItems(items:List<ProductItem>)
 
     @Query("select * from sephora_items")
-    fun observeAllSephoraItems(): LiveData<List<SephoraItem>>
+    fun getAllSephoraItems(): LiveData<List<ProductItem>>
 
 }
