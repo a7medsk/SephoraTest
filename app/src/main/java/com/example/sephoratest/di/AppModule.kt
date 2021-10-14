@@ -9,6 +9,8 @@ import com.example.sephoratest.data.repository.DefaultProductRepository
 import com.example.sephoratest.data.repository.ProductRepository
 import com.example.sephoratest.other.Constants.BASE_URL
 import com.example.sephoratest.other.Constants.DATABASE_NAME
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -27,7 +29,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
 
 
     @Singleton
@@ -51,11 +52,14 @@ object AppModule {
         database: ProductItemDataBase
     ) = database.productDao()
 
+
+
     @Singleton
     @Provides
     fun provideProductApi(): ProductApi {
+        val gson :Gson= GsonBuilder().setLenient().create()
         return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .baseUrl(BASE_URL)
             .build()
             .create(ProductApi::class.java)

@@ -19,11 +19,11 @@ class DefaultProductRepository @Inject constructor(
 
 ) :ProductRepository {
 
-    fun getAllProductItems(): LiveData<List<Product>> {
+    override fun getAllProductItems(): LiveData<List<Product>> {
         return productDao.getAllProductItems()
     }
 
-    suspend fun refreshItems() {
+    override suspend fun refreshItems() {
 
         productApi.getItems().also {
             productDao.insertAllProductItems(it.items) }

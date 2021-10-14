@@ -48,13 +48,13 @@ class ProductDaoTest {
     }
 
     @Test
-    fun insertShoppingItem() = runBlockingTest {
-        val sephoraItem = Product("1","description","location","urlimage")
-        dao.insertProductItem(sephoraItem)
+    fun insertProductItem() = runBlockingTest {
+        val productItem = Product("1","description","location","urlimage")
+        dao.insertProductItem(productItem)
 
-        val allShoppingItems = dao.getAllProductItems().getOrAwaitValue()
+        val allProductItems = dao.getAllProductItems().getOrAwaitValue()
 
-        assertThat(allShoppingItems).contains(sephoraItem)
+        assertThat(allProductItems).contains(productItem)
     }
 
 
