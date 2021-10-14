@@ -7,4 +7,6 @@ package com.example.sephoratest.other
 object Constants {
 
     const val BASE_URL = "https://sephoraios.github.io"
+
+    const val DATABASE_NAME = "sephora_db"
 }

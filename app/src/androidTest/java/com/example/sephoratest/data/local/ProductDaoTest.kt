@@ -39,7 +39,7 @@ class ProductDaoTest {
             ApplicationProvider.getApplicationContext(),
             ProductItemDataBase::class.java
         ).allowMainThreadQueries().build()
-        dao = database.sephoraDao()
+        dao = database.productDao()
     }
 
     @After
@@ -49,10 +49,10 @@ class ProductDaoTest {
 
     @Test
     fun insertShoppingItem() = runBlockingTest {
-        val sephoraItem = ProductItem(1,"description","location","urlimage")
-        dao.insertSephoraItem(sephoraItem)
+        val sephoraItem = Product("1","description","location","urlimage")
+        dao.insertProductItem(sephoraItem)
 
-        val allShoppingItems = dao.getAllSephoraItems().getOrAwaitValue()
+        val allShoppingItems = dao.getAllProductItems().getOrAwaitValue()
 
         assertThat(allShoppingItems).contains(sephoraItem)
     }

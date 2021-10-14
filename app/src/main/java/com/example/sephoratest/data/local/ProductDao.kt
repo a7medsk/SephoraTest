@@ -5,6 +5,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.sephoratest.data.remote.ProductResponse
+import retrofit2.Call
 
 
 /**
@@ -14,12 +16,12 @@ import androidx.room.Query
 interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSephoraItem(productItem: ProductItem)
+    suspend fun insertProductItem(product: Product)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllSephoraItems(items:List<ProductItem>)
+    suspend fun insertAllProductItems(products:List<Product>)
 
     @Query("select * from sephora_items")
-    fun getAllSephoraItems(): LiveData<List<ProductItem>>
+    fun getAllProductItems(): LiveData<List<Product>>
 
 }

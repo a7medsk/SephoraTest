@@ -8,8 +8,8 @@ import androidx.room.RoomDatabase
  *Created by haskhiri on 13/10/2021
  */
 
-@Database(entities = [ProductItem::class],
+@Database(entities = [Product::class],
     version =1)
 abstract class ProductItemDataBase :RoomDatabase() {
-    abstract fun sephoraDao():ProductDao
+    abstract fun productDao():ProductDao
 }
